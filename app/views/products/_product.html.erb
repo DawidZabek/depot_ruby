@@ -1,0 +1,25 @@
+<div id="<%= dom_id product %>" class="my-5">
+  <p class="my-2">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= product.title %>
+  </p>
+
+  <p class="my-2">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= product.description %>
+  </p>
+
+  <p class="my-2">
+    <strong class="block font-medium mb-1">Image:</strong>
+    <% if product.image.attached? %>
+      <%= image_tag product.image, class: "mt-2 rounded-md shadow-sm max-w-xs" %>
+    <% else %>
+      <span class="text-gray-500">No image</span>
+    <% end %>
+  </p>
+
+  <p class="my-2">
+    <strong class="block font-medium mb-1">Price:</strong>
+    <%= number_to_currency(product.price) %>
+  </p>
+</div>
