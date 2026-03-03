@@ -2,7 +2,7 @@ require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @product = products(:one)
+    @product = products(:pragprog)
   end
 
   test "should get index" do
@@ -16,8 +16,15 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create product" do
-    assert_difference("Product.count") do
-      post products_url, params: { product: {  : @product.  } }
+    assert_difference("Product.count", 1) do
+      post products_url, params: {
+        product: {
+          title: "Some title #{SecureRandom.hex(4)}",
+          description: "Some description",
+          price: 9.99,
+          image: fixture_file_upload("lorem.jpg", "image/jpeg")
+        }
+      }
     end
 
     assert_redirected_to product_url(Product.last)
@@ -34,7 +41,15 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: {  : @product.  } }
+    patch product_url(@product), params: {
+      product: {
+        title: "Updated title #{SecureRandom.hex(4)}",
+        description: "Updated description",
+        price: 29.99,
+        image: fixture_file_upload("lorem.jpg", "image/jpeg")
+      }
+    }
+
     assert_redirected_to product_url(@product)
   end
 
