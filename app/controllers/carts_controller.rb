@@ -10,8 +10,7 @@ class CartsController < ApplicationController
   def show
   end
 
-  # GET /carts/new
-  def new
+  # GET /carts/newa  def new
     @cart = Cart.new
   end
 
