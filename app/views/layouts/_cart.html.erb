@@ -1,0 +1,7 @@
+<% if local_assigns[:cart] && local_assigns[:cart].line_items.any? %>
+  <div id="cart" class="bg-white rounded p-2">
+    <%= render local_assigns[:cart] %>
+  </div>
+<% else %>
+  <div id="cart"></div>
+<% end %>
